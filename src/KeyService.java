@@ -1,14 +1,14 @@
-import org.apache.commons.codec.binary.Hex;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.Scanner;
 
-
-public class Crypto {
+public class KeyService {
 
     private static final String AES
             = "AES";
@@ -17,6 +17,8 @@ public class Crypto {
     private static final String AES_CIPHER_ALGORITHM
             = "AES/CBC/PKCS5PADDING";
 
+    static byte[] initializationVector
+            = KeyService.createInitializationVector();
 
     private static Scanner message;
 
@@ -106,4 +108,67 @@ public class Crypto {
         secureRandom.nextBytes(initializationVector);
         return initializationVector;
     }
+
+
+    public static String convertSecretKeyToString(SecretKey secretKey) throws NoSuchAlgorithmException {
+        byte[] rawData = secretKey.getEncoded();
+        String encodedKey = Base64.getEncoder().encodeToString(rawData);
+        return encodedKey;
+    }
+
+    public static SecretKey convertStringToSecretKeyto(String encodedKey) {
+        byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
+        SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, AES);
+        return originalKey;
+    }
+
+
+
+//    public static void main(String[] args) {
+//
+//        try {
+//            SecretKey secretKey = createAESKey();
+//
+//            String plainText
+//                    = "{\"id\":1,\"content\":\"1\"}";
+//
+//            byte[] initializationVector
+//                    = createInitializationVector();
+//
+//            // Encrypting the message
+//            // using the symmetric key
+//            byte[] cipherText
+//                    = do_AESEncryption(
+//                    plainText,
+//                    secretKey,
+//                    initializationVector);
+//
+//
+//            String str = convertSecretKeyToString(secretKey);
+//
+//            SecretKey recover = convertStringToSecretKeyto(str);
+////            System.out.println(
+////                    "The ciphertext or "
+////                            + "Encrypted Message is: "
+////                            + Hex.encodeHexString(
+////                            cipherText));
+//
+//            // Decrypting the encrypted
+//            // message
+//            String decryptedText
+//                    = do_AESDecryption(
+//                    cipherText,
+//                    recover,
+//                    initializationVector);
+//
+//            System.out.println(
+//                    "Your original message is: "
+//                            + decryptedText);
+//
+//
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
 }
