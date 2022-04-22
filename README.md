@@ -8,19 +8,19 @@ This project aims to build a working prototype, client-server for the "Store Man
 
 The "manager" user has the following user stories:
 
-• As a store manager, I want to add information of a new product
+DONE As a store manager, I want to add information of a new product 
 
-• As a store manager, I want to change information of an existing product
+DONE As a store manager, I want to change information of an existing product
 
 The "customer" user has the following user stories:
 
-As a customer, I want to register as a new user into the system
+DONE As a customer, I want to register as a new user into the system
 
-As a customer, I want to change my customer information (e.g. address, payment method, phone number, email)
+DONEA s a customer, I want to change my customer information (e.g. address, payment method, phone number, email)
 
-As a customer, I want to change my login information (e.g., password)
+DONE As a customer, I want to change my login information (e.g., password)
 
-As a customer, I want to log in the system
+DONE As a customer, I want to log in the system
 
 As a customer, I want to make a new order
 
@@ -28,7 +28,7 @@ As a customer, I want to change an existing order (e.g., change quantity, add it
 
 As a customer, I want to cancel an order
 
-As a customer, I want to search for product information
+DONE As a customer, I want to search for product information
 
 As a customer, I want to see my order history
 
