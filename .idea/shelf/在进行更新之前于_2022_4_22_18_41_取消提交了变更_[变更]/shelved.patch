@@ -1,0 +1,315 @@
+Index: src/Crypto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Crypto.java b/src/KeyService.java
+rename from src/Crypto.java
+rename to src/KeyService.java
+--- a/src/Crypto.java	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ b/src/KeyService.java	(date 1650670863772)
+@@ -1,14 +1,14 @@
+-import org.apache.commons.codec.binary.Hex;
+-
+ import javax.crypto.Cipher;
+ import javax.crypto.KeyGenerator;
+ import javax.crypto.SecretKey;
+ import javax.crypto.spec.IvParameterSpec;
++import javax.crypto.spec.SecretKeySpec;
++import java.security.NoSuchAlgorithmException;
+ import java.security.SecureRandom;
++import java.util.Base64;
+ import java.util.Scanner;
+ 
+-
+-public class Crypto {
++public class KeyService {
+ 
+     private static final String AES
+             = "AES";
+@@ -17,6 +17,8 @@
+     private static final String AES_CIPHER_ALGORITHM
+             = "AES/CBC/PKCS5PADDING";
+ 
++    static byte[] initializationVector
++            = KeyService.createInitializationVector();
+ 
+     private static Scanner message;
+ 
+@@ -106,4 +108,67 @@
+         secureRandom.nextBytes(initializationVector);
+         return initializationVector;
+     }
+-}
+\ No newline at end of file
++
++
++    public static String convertSecretKeyToString(SecretKey secretKey) throws NoSuchAlgorithmException {
++        byte[] rawData = secretKey.getEncoded();
++        String encodedKey = Base64.getEncoder().encodeToString(rawData);
++        return encodedKey;
++    }
++
++    public static SecretKey convertStringToSecretKeyto(String encodedKey) {
++        byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
++        SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, AES);
++        return originalKey;
++    }
++
++
++
++//    public static void main(String[] args) {
++//
++//        try {
++//            SecretKey secretKey = createAESKey();
++//
++//            String plainText
++//                    = "{\"id\":1,\"content\":\"1\"}";
++//
++//            byte[] initializationVector
++//                    = createInitializationVector();
++//
++//            // Encrypting the message
++//            // using the symmetric key
++//            byte[] cipherText
++//                    = do_AESEncryption(
++//                    plainText,
++//                    secretKey,
++//                    initializationVector);
++//
++//
++//            String str = convertSecretKeyToString(secretKey);
++//
++//            SecretKey recover = convertStringToSecretKeyto(str);
++////            System.out.println(
++////                    "The ciphertext or "
++////                            + "Encrypted Message is: "
++////                            + Hex.encodeHexString(
++////                            cipherText));
++//
++//            // Decrypting the encrypted
++//            // message
++//            String decryptedText
++//                    = do_AESDecryption(
++//                    cipherText,
++//                    recover,
++//                    initializationVector);
++//
++//            System.out.println(
++//                    "Your original message is: "
++//                            + decryptedText);
++//
++//
++//        } catch (Exception e) {
++//            throw new RuntimeException(e);
++//        }
++//    }
++
++}
+Index: .idea/libraries/sqlite_jdbc_3_16_1.xml
+===================================================================
+diff --git a/.idea/libraries/sqlite_jdbc_3_16_1.xml b/.idea/libraries/sqlite_jdbc_3_16_1.xml
+deleted file mode 100644
+--- a/.idea/libraries/sqlite_jdbc_3_16_1.xml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ /dev/null	(revision ba67266048628b7214d0414f9347dc44c414766b)
+@@ -1,9 +0,0 @@
+-<component name="libraryTable">
+-  <library name="sqlite-jdbc-3.16.1">
+-    <CLASSES>
+-      <root url="jar://$PROJECT_DIR$/lib/sqlite-jdbc-3.16.1.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/gson_2_8_6_javadoc.xml
+===================================================================
+diff --git a/.idea/libraries/gson_2_8_6_javadoc.xml b/.idea/libraries/gson_2_8_6_javadoc.xml
+deleted file mode 100644
+--- a/.idea/libraries/gson_2_8_6_javadoc.xml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ /dev/null	(revision ba67266048628b7214d0414f9347dc44c414766b)
+@@ -1,9 +0,0 @@
+-<component name="libraryTable">
+-  <library name="gson-2.8.6-javadoc">
+-    <CLASSES>
+-      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.6-javadoc.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/libraries/commons_codec_1_15.xml
+===================================================================
+diff --git a/.idea/libraries/commons_codec_1_15.xml b/.idea/libraries/commons_codec_1_15.xml
+deleted file mode 100644
+--- a/.idea/libraries/commons_codec_1_15.xml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ /dev/null	(revision ba67266048628b7214d0414f9347dc44c414766b)
+@@ -1,9 +0,0 @@
+-<component name="libraryTable">
+-  <library name="commons-codec-1.15">
+-    <CLASSES>
+-      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.15.jar!/" />
+-    </CLASSES>
+-    <JAVADOC />
+-    <SOURCES />
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/dataSources.xml
+===================================================================
+diff --git a/.idea/dataSources.xml b/.idea/dataSources.xml
+deleted file mode 100644
+--- a/.idea/dataSources.xml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ /dev/null	(revision ba67266048628b7214d0414f9347dc44c414766b)
+@@ -1,11 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+-    <data-source source="LOCAL" name="store" uuid="59db6fc2-8276-4080-8106-9d19fd3edd5e">
+-      <driver-ref>sqlite.xerial</driver-ref>
+-      <synchronize>true</synchronize>
+-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/data/store.db</jdbc-url>
+-    </data-source>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/sqldialects.xml
+===================================================================
+diff --git a/.idea/sqldialects.xml b/.idea/sqldialects.xml
+deleted file mode 100644
+--- a/.idea/sqldialects.xml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ /dev/null	(revision ba67266048628b7214d0414f9347dc44c414766b)
+@@ -1,7 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="SqlDialectMappings">
+-    <file url="file://$PROJECT_DIR$/src/DatabaseManager.java" dialect="GenericSQL" />
+-    <file url="PROJECT" dialect="SQLite" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/libraries/com_google_code_gson_gson_2_8_6.xml
+===================================================================
+diff --git a/.idea/libraries/com_google_code_gson_gson_2_8_6.xml b/.idea/libraries/com_google_code_gson_gson_2_8_6.xml
+deleted file mode 100644
+--- a/.idea/libraries/com_google_code_gson_gson_2_8_6.xml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ /dev/null	(revision ba67266048628b7214d0414f9347dc44c414766b)
+@@ -1,14 +0,0 @@
+-<component name="libraryTable">
+-  <library name="com.google.code.gson:gson:2.8.6" type="repository">
+-    <properties maven-id="com.google.code.gson:gson:2.8.6" />
+-    <CLASSES>
+-      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.6.jar!/" />
+-    </CLASSES>
+-    <JAVADOC>
+-      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.6-javadoc.jar!/" />
+-    </JAVADOC>
+-    <SOURCES>
+-      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.6-sources.jar!/" />
+-    </SOURCES>
+-  </library>
+-</component>
+\ No newline at end of file
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ /dev/null	(revision ba67266048628b7214d0414f9347dc44c414766b)
+@@ -1,8 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+-# Datasource local storage ignored files
+-/dataSources/
+-/dataSources.local.xml
+-# Editor-based HTTP Client requests
+-/httpRequests/
+Index: FinalProject.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n    <orderEntry type=\"library\" name=\"sqlite-jdbc-3.16.1\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"com.google.code.gson:gson:2.8.6\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"commons-codec-1.15\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"gson-2.8.6-javadoc\" level=\"project\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/FinalProject.iml b/FinalProject.iml
+--- a/FinalProject.iml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ b/FinalProject.iml	(date 1650669181518)
+@@ -7,9 +7,6 @@
+     </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+-    <orderEntry type="library" name="sqlite-jdbc-3.16.1" level="project" />
+-    <orderEntry type="library" name="com.google.code.gson:gson:2.8.6" level="project" />
+-    <orderEntry type="library" name="commons-codec-1.15" level="project" />
+-    <orderEntry type="library" name="gson-2.8.6-javadoc" level="project" />
++    <orderEntry type="library" name="lib" level="project" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_10\" default=\"true\" project-jdk-name=\"10\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ b/.idea/misc.xml	(date 1650669181563)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_10" default="true" project-jdk-name="10" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-16" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+--- a/.idea/vcs.xml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ b/.idea/vcs.xml	(date 1650669181569)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++    <mapping directory="" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/uiDesigner.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Palette2\">\r\n    <group name=\"Swing\">\r\n      <item class=\"com.intellij.uiDesigner.HSpacer\" tooltip-text=\"Horizontal Spacer\" icon=\"/com/intellij/uiDesigner/icons/hspacer.png\" removable=\"false\" auto-create-binding=\"false\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"1\" hsize-policy=\"6\" anchor=\"0\" fill=\"1\" />\r\n      </item>\r\n      <item class=\"com.intellij.uiDesigner.VSpacer\" tooltip-text=\"Vertical Spacer\" icon=\"/com/intellij/uiDesigner/icons/vspacer.png\" removable=\"false\" auto-create-binding=\"false\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"6\" hsize-policy=\"1\" anchor=\"0\" fill=\"2\" />\r\n      </item>\r\n      <item class=\"javax.swing.JPanel\" icon=\"/com/intellij/uiDesigner/icons/panel.png\" removable=\"false\" auto-create-binding=\"false\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"3\" hsize-policy=\"3\" anchor=\"0\" fill=\"3\" />\r\n      </item>\r\n      <item class=\"javax.swing.JScrollPane\" icon=\"/com/intellij/uiDesigner/icons/scrollPane.png\" removable=\"false\" auto-create-binding=\"false\" can-attach-label=\"true\">\r\n        <default-constraints vsize-policy=\"7\" hsize-policy=\"7\" anchor=\"0\" fill=\"3\" />\r\n      </item>\r\n      <item class=\"javax.swing.JButton\" icon=\"/com/intellij/uiDesigner/icons/button.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"3\" anchor=\"0\" fill=\"1\" />\r\n        <initial-values>\r\n          <property name=\"text\" value=\"Button\" />\r\n        </initial-values>\r\n      </item>\r\n      <item class=\"javax.swing.JRadioButton\" icon=\"/com/intellij/uiDesigner/icons/radioButton.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"3\" anchor=\"8\" fill=\"0\" />\r\n        <initial-values>\r\n          <property name=\"text\" value=\"RadioButton\" />\r\n        </initial-values>\r\n      </item>\r\n      <item class=\"javax.swing.JCheckBox\" icon=\"/com/intellij/uiDesigner/icons/checkBox.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"3\" anchor=\"8\" fill=\"0\" />\r\n        <initial-values>\r\n          <property name=\"text\" value=\"CheckBox\" />\r\n        </initial-values>\r\n      </item>\r\n      <item class=\"javax.swing.JLabel\" icon=\"/com/intellij/uiDesigner/icons/label.png\" removable=\"false\" auto-create-binding=\"false\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"0\" anchor=\"8\" fill=\"0\" />\r\n        <initial-values>\r\n          <property name=\"text\" value=\"Label\" />\r\n        </initial-values>\r\n      </item>\r\n      <item class=\"javax.swing.JTextField\" icon=\"/com/intellij/uiDesigner/icons/textField.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"true\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"6\" anchor=\"8\" fill=\"1\">\r\n          <preferred-size width=\"150\" height=\"-1\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JPasswordField\" icon=\"/com/intellij/uiDesigner/icons/passwordField.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"true\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"6\" anchor=\"8\" fill=\"1\">\r\n          <preferred-size width=\"150\" height=\"-1\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JFormattedTextField\" icon=\"/com/intellij/uiDesigner/icons/formattedTextField.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"true\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"6\" anchor=\"8\" fill=\"1\">\r\n          <preferred-size width=\"150\" height=\"-1\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JTextPane\" icon=\"/com/intellij/uiDesigner/icons/textPane.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"true\">\r\n        <default-constraints vsize-policy=\"6\" hsize-policy=\"6\" anchor=\"0\" fill=\"3\">\r\n          <preferred-size width=\"150\" height=\"50\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JTextArea\" icon=\"/com/intellij/uiDesigner/icons/textArea.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"true\">\r\n        <default-constraints vsize-policy=\"6\" hsize-policy=\"6\" anchor=\"0\" fill=\"3\">\r\n          <preferred-size width=\"150\" height=\"50\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JEditorPane\" icon=\"/com/intellij/uiDesigner/icons/editorPane.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"true\">\r\n        <default-constraints vsize-policy=\"6\" hsize-policy=\"6\" anchor=\"0\" fill=\"3\">\r\n          <preferred-size width=\"150\" height=\"50\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JComboBox\" icon=\"/com/intellij/uiDesigner/icons/comboBox.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"true\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"2\" anchor=\"8\" fill=\"1\" />\r\n      </item>\r\n      <item class=\"javax.swing.JTable\" icon=\"/com/intellij/uiDesigner/icons/table.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"6\" hsize-policy=\"6\" anchor=\"0\" fill=\"3\">\r\n          <preferred-size width=\"150\" height=\"50\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JList\" icon=\"/com/intellij/uiDesigner/icons/list.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"6\" hsize-policy=\"2\" anchor=\"0\" fill=\"3\">\r\n          <preferred-size width=\"150\" height=\"50\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JTree\" icon=\"/com/intellij/uiDesigner/icons/tree.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"6\" hsize-policy=\"6\" anchor=\"0\" fill=\"3\">\r\n          <preferred-size width=\"150\" height=\"50\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JTabbedPane\" icon=\"/com/intellij/uiDesigner/icons/tabbedPane.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"3\" hsize-policy=\"3\" anchor=\"0\" fill=\"3\">\r\n          <preferred-size width=\"200\" height=\"200\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JSplitPane\" icon=\"/com/intellij/uiDesigner/icons/splitPane.png\" removable=\"false\" auto-create-binding=\"false\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"3\" hsize-policy=\"3\" anchor=\"0\" fill=\"3\">\r\n          <preferred-size width=\"200\" height=\"200\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JSpinner\" icon=\"/com/intellij/uiDesigner/icons/spinner.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"true\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"6\" anchor=\"8\" fill=\"1\" />\r\n      </item>\r\n      <item class=\"javax.swing.JSlider\" icon=\"/com/intellij/uiDesigner/icons/slider.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"6\" anchor=\"8\" fill=\"1\" />\r\n      </item>\r\n      <item class=\"javax.swing.JSeparator\" icon=\"/com/intellij/uiDesigner/icons/separator.png\" removable=\"false\" auto-create-binding=\"false\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"6\" hsize-policy=\"6\" anchor=\"0\" fill=\"3\" />\r\n      </item>\r\n      <item class=\"javax.swing.JProgressBar\" icon=\"/com/intellij/uiDesigner/icons/progressbar.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"6\" anchor=\"0\" fill=\"1\" />\r\n      </item>\r\n      <item class=\"javax.swing.JToolBar\" icon=\"/com/intellij/uiDesigner/icons/toolbar.png\" removable=\"false\" auto-create-binding=\"false\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"6\" anchor=\"0\" fill=\"1\">\r\n          <preferred-size width=\"-1\" height=\"20\" />\r\n        </default-constraints>\r\n      </item>\r\n      <item class=\"javax.swing.JToolBar$Separator\" icon=\"/com/intellij/uiDesigner/icons/toolbarSeparator.png\" removable=\"false\" auto-create-binding=\"false\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"0\" hsize-policy=\"0\" anchor=\"0\" fill=\"1\" />\r\n      </item>\r\n      <item class=\"javax.swing.JScrollBar\" icon=\"/com/intellij/uiDesigner/icons/scrollbar.png\" removable=\"false\" auto-create-binding=\"true\" can-attach-label=\"false\">\r\n        <default-constraints vsize-policy=\"6\" hsize-policy=\"0\" anchor=\"0\" fill=\"2\" />\r\n      </item>\r\n    </group>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/uiDesigner.xml b/.idea/uiDesigner.xml
+--- a/.idea/uiDesigner.xml	(revision ba67266048628b7214d0414f9347dc44c414766b)
++++ b/.idea/uiDesigner.xml	(date 1650669342036)
+@@ -53,12 +53,12 @@
+           <preferred-size width="150" height="-1" />
+         </default-constraints>
+       </item>
+-      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.png" removable="false" auto-create-binding="true" can-attach-label="true">
+         <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
+           <preferred-size width="150" height="50" />
+         </default-constraints>
+       </item>
+-      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.png" removable="false" auto-create-binding="true" can-attach-label="true">
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
+         <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
+           <preferred-size width="150" height="50" />
+         </default-constraints>

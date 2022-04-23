@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a7957713-394f-45e0-b553-243b458f51df" name="变更" comment="test">
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$Worker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Crypto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Server$Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Server$Worker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="28ApE5sgG775NAmNIJOgxu9Wxk0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FinalProject-SecretKey" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="项目" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RunManager" selected="应用程序.Client">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Client" />
+      <module name="FinalProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Server" />
+      <module name="FinalProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.Client" />
+        <item itemvalue="应用程序.Server" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="a7957713-394f-45e0-b553-243b458f51df" name="变更" comment="" />
+      <created>1650669131625</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650669131625</updated>
+      <workItem from="1650669133536" duration="2947000" />
+    </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1650670961694</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650670961694</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
+  </component>
+</project>
