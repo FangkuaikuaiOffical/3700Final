@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7957713-394f-45e0-b553-243b458f51df" name="变更" comment="test">
+    <list default="true" id="a7957713-394f-45e0-b553-243b458f51df" name="变更" comment="update - Change password DONE">
+      <change afterPath="$PROJECT_DIR$/src/ChangePasswordPanelController.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ChangePasswordPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/store.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/store.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$3.class" afterDir="false" />
@@ -13,26 +17,39 @@
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$6.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$Worker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Crypto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Server$Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Server$Worker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/DatabaseManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/DatabaseManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Message.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="28ApE5sgG775NAmNIJOgxu9Wxk0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -104,7 +121,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="update - Change password DONE" />
+    <option name="LAST_COMMIT_MESSAGE" value="update - Change password DONE" />
   </component>
 </project>

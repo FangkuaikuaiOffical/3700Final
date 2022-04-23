@@ -23,6 +23,7 @@ public class Client {
     private JPanel mainPanel;
     private JButton logoutButton;
     private JButton searchProductButton;
+    private JButton changePasswordButton;
 
     private SecretKey secretKey;
     private byte[] initializationVector;
@@ -40,6 +41,7 @@ public class Client {
     private OrderViewController orderViewController;
     private LoginPanelController loginPanelController;
     private ProductSearcherController productSearcherController;
+    private ChangePasswordPanelController changePasswordPanelController;
 
 
 
@@ -103,13 +105,25 @@ public class Client {
         this.orderViewController = new OrderViewController(this);
         this.loginPanelController = new LoginPanelController(this);
         this.productSearcherController = new ProductSearcherController(this);
-
+        this.changePasswordPanelController = new ChangePasswordPanelController(this);
 
 
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LogoutAndHideButtons();
+            }
+        });
+
+        changePasswordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame("Change Password");
+                frame.setContentPane(changePasswordPanelController.getMainPanel());
+                frame.setMinimumSize(new Dimension(800, 400));
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.pack();
+                frame.setVisible(true);
             }
         });
 

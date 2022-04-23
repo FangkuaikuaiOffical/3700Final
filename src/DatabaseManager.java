@@ -58,6 +58,13 @@ public class DatabaseManager {
                 else return new Message(Message.FAIL, "Cannot registered");
             }
 
+            case Message.CHANGE_PASSWORD:{
+                Account account = gson.fromJson(message.getContent(),Account.class);
+                boolean result = changePassword(account);
+                if (result) return new Message(Message.SUCCESS,"Password changed");
+                else return new Message(Message.FAIL,"Password change failed");
+            }
+
             case Message.LOAD_PRODUCT: {
                 Product product = loadProduct(Integer.parseInt(message.getContent()));
                 return new Message(Message.LOAD_PRODUCT_REPLY, gson.toJson(product));
@@ -347,5 +354,20 @@ public class DatabaseManager {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public Boolean changePassword(Account account){
+        try {
+            PreparedStatement statement = connection.prepareStatement
+                    ("UPDATE Users SET Password = ? WHERE UserID = ?");
+            statement.setString(1,account.getPassword());
+            statement.setInt(2,account.getId());
+            statement.execute();
+            statement.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

@@ -24,7 +24,7 @@ public class Message {
     public static final int LOGIN_TRY = 100;
     public static final int NEW_USER = 101;
     public static final int NEW_USER_SUCCESS = 102;
-
+    public static final int CHANGE_PASSWORD = 103;
 
 
     private int id; // the type of the message
