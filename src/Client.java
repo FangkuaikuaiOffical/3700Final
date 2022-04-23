@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 
+import javax.crypto.SecretKey;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Base64;
 
 public class Client {
 
@@ -21,6 +23,9 @@ public class Client {
     private JPanel mainPanel;
     private JButton logoutButton;
     private JButton searchProductButton;
+
+    private SecretKey secretKey;
+    private byte[] initializationVector;
 
     private Socket socket;
     private DataInputStream dataInputStream;
@@ -69,6 +74,20 @@ public class Client {
             socket = new Socket(InetAddress.getByName("127.0.0.1"), 12002);
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
+
+            secretKey = KeyService.createAESKey();
+
+            String keyString = KeyService.convertSecretKeyToString(secretKey);
+
+            dataOutputStream.writeUTF(keyString);
+
+            // send the initialization vector
+
+            initializationVector = KeyService.createInitializationVector();
+
+            String vectorString = Base64.getEncoder().encodeToString(initializationVector);
+
+            dataOutputStream.writeUTF(vectorString);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -159,7 +178,22 @@ public class Client {
 
         String str = gson.toJson(message);
         try {
-            dataOutputStream.writeUTF(str);
+            // Encrypting the message
+            // using the symmetric key
+            byte[] cipherText
+                    = new byte[0];
+            try {
+                cipherText = KeyService.do_AESEncryption(
+                str,
+                secretKey,
+                initializationVector);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String cipherTextString = Base64.getEncoder().encodeToString(cipherText);
+
+            dataOutputStream.writeUTF(cipherTextString);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -175,6 +209,18 @@ public class Client {
                 String replyString = null;
                 try {
                     replyString = dataInputStream.readUTF();
+
+                    byte[] decode = Base64.getDecoder().decode(replyString);
+
+                    try {
+                        replyString
+                                = KeyService.do_AESDecryption(
+                                decode,
+                                secretKey,
+                                initializationVector);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

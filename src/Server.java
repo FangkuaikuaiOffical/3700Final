@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 
+import javax.crypto.SecretKey;
 import javax.swing.*;
 import java.awt.*;
 import java.io.DataInputStream;
@@ -7,6 +8,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Base64;
 
 public class Server {
 
@@ -17,6 +19,10 @@ public class Server {
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
 
+    private SecretKey secretKey;
+
+    private byte[] initializationVector;
+
     private Worker worker;
 
     public Server() {
@@ -26,6 +32,19 @@ public class Server {
 
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
+
+            String keyString = dataInputStream.readUTF();
+
+            secretKey = KeyService.convertStringToSecretKeyto(keyString);
+
+            // receive the initialization vector
+
+            String vectorString = dataInputStream.readUTF();
+
+            initializationVector = Base64.getDecoder().decode(vectorString);
+
+
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -40,25 +59,46 @@ public class Server {
 
         @Override
         public void run() {
+
+
             while (true) {
-                String requestString = null;
+                String decryptedText = null;
                 try {
-                    requestString = dataInputStream.readUTF();
-                } catch (IOException e) {
+
+                    String receive = dataInputStream.readUTF();
+
+                    byte[] decode = Base64.getDecoder().decode(receive);
+
+                    decryptedText
+                            = KeyService.do_AESDecryption(
+                            decode,
+                            secretKey,
+                            initializationVector);
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                messageTextArea.append("Received: " + requestString + "\n");
+                messageTextArea.append("Received: " + decryptedText + "\n");
 
-                Message replyMessage = DatabaseManager.getInstance().process(requestString);
+                Message replyMessage = DatabaseManager.getInstance().process(decryptedText);
 
                 Gson gson = new Gson();
-
-                String replyString = gson.toJson(replyMessage);
-
                 try {
-                    dataOutputStream.writeUTF(replyString);
-                } catch (IOException e) {
+                    String replyString = gson.toJson(replyMessage);
+
+
+                    // Encrypting the message
+                    // using the symmetric key
+                    byte[] cipherText
+                            = KeyService.do_AESEncryption(
+                            replyString,
+                            secretKey,
+                            initializationVector);
+
+                    String cipherTextString = Base64.getEncoder().encodeToString(cipherText);
+                    dataOutputStream.writeUTF(cipherTextString);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
