@@ -16,14 +16,14 @@ The "customer" user has the following user stories:
 
 DONE As a customer, I want to register as a new user into the system
 
-DONEA s a customer, I want to change my customer information (e.g. address, payment method, phone number, email)
+DONE s a customer, I want to change my customer information (e.g. address, payment method, phone number, email)
 
 DONE As a customer, I want to change my login information (e.g., password)
 
 DONE As a customer, I want to log in the system
 
-As a customer, I want to make a new order
-
+DONE As a customer, I want to make a new order
+ 
 As a customer, I want to change an existing order (e.g., change quantity, add items or remove existing ones)
 
 As a customer, I want to cancel an order

@@ -42,6 +42,7 @@ public class Client {
     private LoginPanelController loginPanelController;
     private ProductSearcherController productSearcherController;
     private ChangePasswordPanelController changePasswordPanelController;
+    private OrderGroupViewController orderGroupViewController;
 
 
 
@@ -106,6 +107,7 @@ public class Client {
         this.loginPanelController = new LoginPanelController(this);
         this.productSearcherController = new ProductSearcherController(this);
         this.changePasswordPanelController = new ChangePasswordPanelController(this);
+        this.orderGroupViewController = new OrderGroupViewController(this);
 
 
         logoutButton.addActionListener(new ActionListener() {
@@ -155,7 +157,7 @@ public class Client {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("Manage Order");
-                frame.setContentPane(orderViewController.getMainPanel());
+                frame.setContentPane(orderGroupViewController.getMainPanel());
                 frame.setMinimumSize(new Dimension(800,400));
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.pack();
@@ -289,9 +291,9 @@ public class Client {
             case Message.SEARCH_PRODUCT_RESULT:{
                 ProductList productList = gson.fromJson(message.getContent(),ProductList.class);
                 productSearcherController.displayResult(productList);
-
-
             }
+
+
 
             default:
         }

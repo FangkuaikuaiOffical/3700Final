@@ -1,24 +1,19 @@
+import java.util.ArrayList;
+
 public class OrderLine {
 
-    private int productID;
+    private int customerID;
     private int orderID;
-    private double quantity;
+    private String[][] productIDAndQuantity;
     private double cost;
 
-    public double getQuantity() {
-        return quantity;
+
+    public int getCustomerID() {
+        return customerID;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
     public int getOrderID() {
@@ -29,11 +24,21 @@ public class OrderLine {
         this.orderID = orderID;
     }
 
-    public int getProductID() {
-        return productID;
+
+
+    public double getCost() {
+        return cost;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public String[][] getProductIDAndQuantity() {
+        return productIDAndQuantity;
+    }
+
+    public void setProductIDAndQuantity(String[][] productIDAndQuantity) {
+        this.productIDAndQuantity = productIDAndQuantity;
     }
 }

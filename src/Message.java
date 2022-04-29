@@ -18,6 +18,10 @@ public class Message {
     public static final int SEARCH_PRODUCT = 10;
     public static final int SEARCH_PRODUCT_RESULT = 11;
 
+    public static final int SAVE_ORDER_LINE = 12;
+    public static final int DELETE_ORDER_LINE = 13;
+    public static final int CHECK_COST = 14;
+
     public static final int LOGIN_ADMIN_SUCCESS = 200;
     public static final int LOGIN_USER_SUCCESS = 201;
     public static final int LOGIN_FAIL = 401;
@@ -25,6 +29,7 @@ public class Message {
     public static final int NEW_USER = 101;
     public static final int NEW_USER_SUCCESS = 102;
     public static final int CHANGE_PASSWORD = 103;
+
 
 
     private int id; // the type of the message

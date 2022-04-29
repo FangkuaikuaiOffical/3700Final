@@ -101,11 +101,59 @@ public class DatabaseManager {
                 else return new Message(Message.FAIL, "Cannot save the order");
             }
 
+            case Message.SAVE_ORDER_LINE:{
+                OrderLine orderLine = gson.fromJson(message.getContent(),OrderLine.class);
+                Boolean result = saveOrderLineAndGetCost(orderLine);
+                if (result) return new Message(Message.SUCCESS, "Order Line Saved");
+                else return new Message(Message.FAIL,"Cannot Save Order Line");
+            }
 
             default:
                 return new Message(Message.FAIL, "Cannot process the message");
         }
     }
+
+
+    public boolean saveOrderLineAndGetCost (OrderLine orderLine){
+        Gson gson = new Gson();
+        String productAndQuantity = gson.toJson(orderLine.getProductIDAndQuantity());
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("SELECT * FROM OrderLine WHERE OrderID = ?");
+            preparedStatement.setInt(1,orderLine.getOrderID());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                preparedStatement = connection.prepareStatement
+                        ("UPDATE OrderLine SET CustomerID = ?, OrderLineTXT = ?, Cost = ? WHERE OrderID = ?");
+                preparedStatement.setInt(1, orderLine.getCustomerID());
+                preparedStatement.setString(2,productAndQuantity);
+                preparedStatement.setDouble(3,orderLine.getCost());
+                preparedStatement.setInt(4,orderLine.getOrderID());
+            }
+            else {
+                preparedStatement = connection.prepareStatement
+                        ("INSERT INTO OrderLine VALUES (?, ?, ?, ?)");
+                preparedStatement.setInt(1,orderLine.getOrderID());
+                preparedStatement.setInt(2, orderLine.getCustomerID());
+                preparedStatement.setString(3,productAndQuantity);
+                preparedStatement.setDouble(4,orderLine.getCost());
+            }
+            preparedStatement.execute();
+            preparedStatement.close();
+            resultSet.close();
+            return true;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 
     public ProductList searchProduct (String keyword){
         ProductList list = new ProductList();
