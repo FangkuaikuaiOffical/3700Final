@@ -24,9 +24,9 @@ DONE As a customer, I want to log in the system
 
 DONE As a customer, I want to make a new order
  
-As a customer, I want to change an existing order (e.g., change quantity, add items or remove existing ones)
+DONE As a customer, I want to change an existing order (e.g., change quantity, add items or remove existing ones)
 
-As a customer, I want to cancel an order
+DONE As a customer, I want to cancel an order
 
 DONE As a customer, I want to search for product information
 

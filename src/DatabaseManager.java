@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import javax.annotation.processing.Processor;
 import javax.xml.crypto.Data;
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class DatabaseManager {
@@ -94,6 +95,11 @@ public class DatabaseManager {
                 return new Message(Message.LOAD_ORDER_REPLY,gson.toJson(order));
             }
 
+            case Message.CHECK_HISTORY:{
+                ArrayList<Integer> history = checkHistory(Integer.parseInt(message.getContent()));
+                return new Message(Message.CHECK_HISTORY_REPLY, gson.toJson(history));
+            }
+
             case Message.SAVE_ORDER:{
                 Order order = gson.fromJson(message.getContent(),Order.class);
                 boolean result = saveOrder(order);
@@ -108,11 +114,71 @@ public class DatabaseManager {
                 else return new Message(Message.FAIL,"Cannot Save Order Line");
             }
 
+            case Message.SEARCH_ORDER:{
+                String [][] orderTable = searchOrderTable(Integer.parseInt(message.getContent()));
+                return new Message(Message.SEARCH_ORDER_REPLY, gson.toJson(orderTable));
+            }
+
+            case Message.DELETE_ORDER_LINE: {
+                int id = Integer.parseInt(message.getContent());
+                deleteOrderLine(id);
+                return new Message(Message.SUCCESS,"delete success");
+            }
+
             default:
                 return new Message(Message.FAIL, "Cannot process the message");
         }
     }
 
+
+    public void deleteOrderLine (int id){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("DELETE FROM OrderLine WHERE OrderID = ?");
+            preparedStatement.setInt(1,id);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Integer> checkHistory (int id) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("SELECT  * FROM  Orderline WHERE CustomerID = ?");
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                list.add(resultSet.getInt(1));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public String[][] searchOrderTable(int id) {
+        String[][] table = {{"0","0"}};
+        Gson gson = new Gson();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("SELECT * FROM Orderline WHERE OrderID = ?");
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                table = gson.fromJson(resultSet.getString(3), String[][].class);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  table;
+    }
 
     public boolean saveOrderLineAndGetCost (OrderLine orderLine){
         Gson gson = new Gson();

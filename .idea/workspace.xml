@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7957713-394f-45e0-b553-243b458f51df" name="变更" comment="update - Change password DONE">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identifier.sqlite" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OrderGroupViewController.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OrderGroupViewController.java" afterDir="false" />
+    <list default="true" id="a7957713-394f-45e0-b553-243b458f51df" name="变更" comment="update - New order Done, change order 1/2 Done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/store.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/store.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client$2.class" afterDir="false" />
@@ -23,13 +17,12 @@
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Client.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/DatabaseManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/DatabaseManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FinalProject/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/FinalProject/OrderLine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FinalProject/OrderLine.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OrderLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProductViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProductViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrderGroupViewController.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderGroupViewController.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrderGroupViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrderGroupViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +62,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FinalProject-SecretKey" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../project3" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -110,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650669131625</updated>
       <workItem from="1650669133536" duration="2947000" />
-      <workItem from="1650874773172" duration="16583000" />
+      <workItem from="1650874773172" duration="24837000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1650670961694</created>
@@ -126,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650686919305</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update - New order Done, change order 1/2 Done">
+      <created>1651209489873</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1651209489873</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,9 +148,19 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="test" />
     <MESSAGE value="update - Change password DONE" />
-    <option name="LAST_COMMIT_MESSAGE" value="update - Change password DONE" />
+    <MESSAGE value="update - New order Done, change order 1/2 Done" />
+    <option name="LAST_COMMIT_MESSAGE" value="update - New order Done, change order 1/2 Done" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/OrderGroupViewController.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="orderLineString" />

@@ -21,6 +21,10 @@ public class Message {
     public static final int SAVE_ORDER_LINE = 12;
     public static final int DELETE_ORDER_LINE = 13;
     public static final int CHECK_COST = 14;
+    public static final int SEARCH_ORDER = 15;
+    public static final int SEARCH_ORDER_REPLY = 16;
+    public static final int CHECK_HISTORY = 17;
+    public static final int CHECK_HISTORY_REPLY = 18;
 
     public static final int LOGIN_ADMIN_SUCCESS = 200;
     public static final int LOGIN_USER_SUCCESS = 201;

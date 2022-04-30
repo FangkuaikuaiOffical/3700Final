@@ -18,6 +18,8 @@ public class OrderGroupViewController {
     private JButton addALineButton;
     private JButton deleteLastLineButton;
     private JButton loadOrderButton;
+    public JTextField historyTF;
+    private JButton historyButton;
     private Client client;
 
 
@@ -35,7 +37,7 @@ public class OrderGroupViewController {
         return order;
     }
 
-    private void writeTableFromOrderList(String[][] order) {
+    public void writeTableFromOrderList(String[][] order) {
         defaultTableModel.setRowCount(0);
         for(int i = 0; i < order.length; i++){
             defaultTableModel.addRow(order[i]);
@@ -63,6 +65,15 @@ public class OrderGroupViewController {
             }
         });
 
+        historyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int id = client.account.getId();
+                Message message = new Message(Message.CHECK_HISTORY, String.valueOf(id));
+                client.sendMessage(message);
+            }
+        });
+
         confirmOrderButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,6 +87,18 @@ public class OrderGroupViewController {
                 String orderLineString = gson.toJson(orderLine);
                 Message message = new Message(Message.SAVE_ORDER_LINE, orderLineString);
                 client.sendMessage(message);
+            }
+        });
+
+        loadOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String id = orderIDTF.getText();
+                Message message = new Message(Message.SEARCH_ORDER, id);
+                client.sendMessage(message);
+
+
             }
         });
 

@@ -10,6 +10,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Base64;
 
 public class Client {
@@ -45,24 +46,25 @@ public class Client {
     private OrderGroupViewController orderGroupViewController;
 
 
-
-
-
     public void LogoutAndHideButtons(){
         loginButton.setVisible(true);
-        logoutButton.setVisible(false);
+        searchProductButton.setVisible(false);
+        changePasswordButton.setVisible(false);
         manageCheckoutButton.setVisible(false);
         manageCustomerButton.setVisible(false);
+        logoutButton.setVisible(false);
         manageProductButton.setVisible(false);
     }
+
     public void ShowManagerButtons(){
         manageProductButton.setVisible(true);
-        manageCustomerButton.setVisible(true);
         loginButton.setVisible(false);
         logoutButton.setVisible(true);
     }
     public void ShowUserButtons(){
         loginButton.setVisible(false);
+        searchProductButton.setVisible(true);
+        changePasswordButton.setVisible(true);
         manageCheckoutButton.setVisible(true);
         manageCustomerButton.setVisible(true);
         logoutButton.setVisible(true);
@@ -292,6 +294,16 @@ public class Client {
                 ProductList productList = gson.fromJson(message.getContent(),ProductList.class);
                 productSearcherController.displayResult(productList);
             }
+
+            case Message.SEARCH_ORDER_REPLY:{
+                String [][] table = gson.fromJson(message.getContent(),String[][].class);
+                orderGroupViewController.writeTableFromOrderList(table);
+            }
+            case Message.CHECK_HISTORY_REPLY:{
+                ArrayList<Integer> history = gson.fromJson(message.getContent(),ArrayList.class);
+                orderGroupViewController.historyTF.setText(history.toString());
+            }
+
 
 
 
